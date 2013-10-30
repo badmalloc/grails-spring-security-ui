@@ -28,15 +28,15 @@ class RegistrationCodeController extends AbstractS2UiController {
 		def registrationCode = findById()
 		if (!registrationCode) return
 
-		[registrationCode: registrationCode]
+			[registrationCode: registrationCode]
 	}
 
 	def update = {
 		def registrationCode = findById()
 		if (!registrationCode) return
-		if (!versionCheck('registrationCode.label', 'RegistrationCode', registrationCode, [registrationCode: registrationCode])) {
-			return
-		}
+			if (!versionCheck('registrationCode.label', 'RegistrationCode', registrationCode, [registrationCode: registrationCode])) {
+				return
+			}
 
 		if (!springSecurityUiService.updateRegistrationCode(registrationCode, params.username, params.token)) {
 			render view: 'edit', model: [registrationCode: registrationCode]
@@ -51,15 +51,15 @@ class RegistrationCodeController extends AbstractS2UiController {
 		def registrationCode = findById()
 		if (!registrationCode) return
 
-		try {
-			springSecurityUiService.deleteRegistrationCode registrationCode
-			flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'registrationCode.label', default: 'RegistrationCode'), params.id])}"
-			redirect action: search
-		}
-		catch (DataIntegrityViolationException e) {
-			flash.error = "${message(code: 'default.not.deleted.message', args: [message(code: 'registrationCode.label', default: 'RegistrationCode'), params.id])}"
-			redirect action: edit, id: params.id
-		}
+			try {
+				springSecurityUiService.deleteRegistrationCode registrationCode
+				flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'registrationCode.label', default: 'RegistrationCode'), params.id])}"
+				redirect action: search
+			}
+			catch (DataIntegrityViolationException e) {
+				flash.error = "${message(code: 'default.not.deleted.message', args: [message(code: 'registrationCode.label', default: 'RegistrationCode'), params.id])}"
+				redirect action: edit, id: params.id
+			}
 	}
 
 	def search = {}
@@ -100,7 +100,7 @@ class RegistrationCodeController extends AbstractS2UiController {
 
 		// add query params to model for paging
 		for (name in ['username', 'token']) {
-		 	model[name] = params[name]
+			model[name] = params[name]
 		}
 
 		render view: 'search', model: model

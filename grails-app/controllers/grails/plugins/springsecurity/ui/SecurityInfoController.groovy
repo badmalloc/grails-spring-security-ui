@@ -14,9 +14,7 @@
  */
 package grails.plugins.springsecurity.ui
 
-import org.springframework.security.core.context.SecurityContextHolder
 
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
 /**
  * @author <a href='mailto:burt@burtbeckwith.com'>Burt Beckwith</a>

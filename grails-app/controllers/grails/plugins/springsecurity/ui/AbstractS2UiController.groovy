@@ -14,8 +14,7 @@
  */
 package grails.plugins.springsecurity.ui
 
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
-
+import grails.plugin.springsecurity.SpringSecurityUtils
 /**
  * @author <a href='mailto:burt@burtbeckwith.com'>Burt Beckwith</a>
  */
@@ -32,7 +31,8 @@ abstract class AbstractS2UiController {
 			def version = params.version.toLong()
 			if (instance.version > version) {
 				instance.errors.rejectValue('version', 'default.optimistic.locking.failure',
-						[message(code: messageCode, default: messageCodeDefault)] as Object[],
+						[
+							message(code: messageCode, default: messageCodeDefault)] as Object[],
 						"Another user has updated this instance while you were editing")
 				render view: 'edit', model: model
 				return false

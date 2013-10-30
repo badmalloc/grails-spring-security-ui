@@ -16,7 +16,7 @@ package grails.plugins.springsecurity.ui
 
 import grails.converters.JSON
 
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.SpringSecurityUtils
 import org.springframework.dao.DataIntegrityViolationException
 
 /**

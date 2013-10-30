@@ -16,7 +16,7 @@ package grails.plugins.springsecurity.ui
 
 import java.text.SimpleDateFormat
 
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.SpringSecurityUtils
 import org.codehaus.groovy.grails.plugins.springsecurity.ui.RegistrationCode
 import org.springframework.transaction.interceptor.TransactionAspectSupport
 

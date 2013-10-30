@@ -1,12 +1,12 @@
 package grails.plugins.springsecurity.ui
 
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.SpringSecurityUtils
 
 class RegisterControllerTests extends GroovyTestCase {
 
 	void testPasswordValidator_SameAsUsername() {
 		assertEquals 'command.password.error.username',
-			RegisterController.passwordValidator('username', [username: 'username'])
+				RegisterController.passwordValidator('username', [username: 'username'])
 	}
 
 	void testPasswordValidator_MinLength() {
@@ -21,7 +21,7 @@ class RegisterControllerTests extends GroovyTestCase {
 		assertTrue RegisterController.checkPasswordRegex(password, command)
 
 		assertEquals 'command.password.error.strength',
-			RegisterController.passwordValidator(password, command)
+				RegisterController.passwordValidator(password, command)
 
 		SpringSecurityUtils.securityConfig.ui.password.minLength = 3
 
@@ -44,7 +44,7 @@ class RegisterControllerTests extends GroovyTestCase {
 		assertTrue RegisterController.checkPasswordRegex(password, command)
 
 		assertEquals 'command.password.error.strength',
-			RegisterController.passwordValidator(password, command)
+				RegisterController.passwordValidator(password, command)
 
 		SpringSecurityUtils.securityConfig.ui.password.maxLength = 100
 
@@ -67,7 +67,7 @@ class RegisterControllerTests extends GroovyTestCase {
 		assertFalse RegisterController.checkPasswordRegex(password, command)
 
 		assertEquals 'command.password.error.strength',
-			RegisterController.passwordValidator(password, command)
+				RegisterController.passwordValidator(password, command)
 
 		password = 'h!Z7abcd'
 
@@ -84,7 +84,7 @@ class RegisterControllerTests extends GroovyTestCase {
 		assertFalse RegisterController.checkPasswordRegex(password, command)
 
 		assertEquals 'command.password.error.strength',
-			RegisterController.passwordValidator(password, command)
+				RegisterController.passwordValidator(password, command)
 
 		password = '123_s3cr3t_asd'
 

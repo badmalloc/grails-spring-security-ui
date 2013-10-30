@@ -16,8 +16,8 @@ package grails.plugins.springsecurity.ui
 
 import groovy.text.SimpleTemplateEngine
 
-import org.codehaus.groovy.grails.plugins.springsecurity.NullSaltSource
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.authentication.dao.NullSaltSource
 import org.codehaus.groovy.grails.plugins.springsecurity.ui.RegistrationCode
 
 /**
@@ -51,7 +51,7 @@ class RegisterController extends AbstractS2UiController {
 
 		String salt = saltSource instanceof NullSaltSource ? null : command.username
 		def user = lookupUserClass().newInstance(email: command.email, username: command.username,
-				accountLocked: true, enabled: true)
+		accountLocked: true, enabled: true)
 
 		RegistrationCode registrationCode = springSecurityUiService.register(user, command.password, salt)
 		if (registrationCode == null || registrationCode.hasErrors()) {
@@ -204,8 +204,8 @@ class RegisterController extends AbstractS2UiController {
 
 	protected String generateLink(String action, linkParams) {
 		createLink(base: "$request.scheme://$request.serverName:$request.serverPort$request.contextPath",
-				controller: 'register', action: action,
-				params: linkParams)
+		controller: 'register', action: action,
+		params: linkParams)
 	}
 
 	protected String evaluate(s, binding) {
@@ -218,8 +218,8 @@ class RegisterController extends AbstractS2UiController {
 		}
 
 		if (!checkPasswordMinLength(password, command) ||
-		    !checkPasswordMaxLength(password, command) ||
-		    !checkPasswordRegex(password, command)) {
+		!checkPasswordMaxLength(password, command) ||
+		!checkPasswordRegex(password, command)) {
 			return 'command.password.error.strength'
 		}
 	}
@@ -269,7 +269,7 @@ class RegisterCommand {
 		username blank: false, nullable: false, validator: { value, command ->
 			if (value) {
 				def User = command.grailsApplication.getDomainClass(
-					SpringSecurityUtils.securityConfig.userLookup.userDomainClassName).clazz
+						SpringSecurityUtils.securityConfig.userLookup.userDomainClassName).clazz
 				if (User.findByUsername(value)) {
 					return 'registerCommand.username.unique'
 				}

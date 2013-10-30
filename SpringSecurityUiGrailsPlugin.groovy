@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.SpringSecurityUtils
 
 /**
  * @author <a href='mailto:burt@burtbeckwith.com'>Burt Beckwith</a>
  */
 class SpringSecurityUiGrailsPlugin {
 
-	String version = '0.2'
+	String version = '0.2.1'
 	String grailsVersion = '1.3 > *'
 	List pluginExcludes = [
 		'docs/**',

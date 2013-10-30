@@ -14,7 +14,7 @@
  */
 package grails.plugins.springsecurity.ui
 
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.SpringSecurityUtils
 import org.springframework.dao.DataIntegrityViolationException
 
 /**
@@ -59,7 +59,12 @@ class RequestmapController extends AbstractS2UiController {
 		def model = [results: results, totalCount: totalCount, searched: true]
 
 		// add query params to model for paging
-		for (name in ['url', 'configAttribute', 'sort', 'order']) {
+		for (name in [
+			'url',
+			'configAttribute',
+			'sort',
+			'order'
+		]) {
 			model[name] = params[name]
 		}
 
@@ -73,8 +78,8 @@ class RequestmapController extends AbstractS2UiController {
 	def save = {
 		def requestmap = lookupRequestmapClass().newInstance(params)
 		if (!requestmap.save(flush: true)) {
-         render view: 'create', model: [requestmap: requestmap]
-         return
+			render view: 'create', model: [requestmap: requestmap]
+			return
 		}
 
 		springSecurityService.clearCachedRequestmaps()
@@ -86,7 +91,7 @@ class RequestmapController extends AbstractS2UiController {
 		def requestmap = findById()
 		if (!requestmap) return
 
-		[requestmap: requestmap]
+			[requestmap: requestmap]
 	}
 
 	def update = {
@@ -107,16 +112,16 @@ class RequestmapController extends AbstractS2UiController {
 		def requestmap = findById()
 		if (!requestmap) return
 
-		try {
-			requestmap.delete(flush: true)
-			springSecurityService.clearCachedRequestmaps()
-			flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'requestmap.label', default: 'Requestmap'), params.id])}"
-			redirect action: search
-		}
-		catch (DataIntegrityViolationException e) {
-			flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'requestmap.label', default: 'Requestmap'), params.id])}"
-			redirect action: edit, id: params.id
-		}
+			try {
+				requestmap.delete(flush: true)
+				springSecurityService.clearCachedRequestmaps()
+				flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'requestmap.label', default: 'Requestmap'), params.id])}"
+				redirect action: search
+			}
+			catch (DataIntegrityViolationException e) {
+				flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'requestmap.label', default: 'Requestmap'), params.id])}"
+				redirect action: edit, id: params.id
+			}
 	}
 
 	protected findById() {

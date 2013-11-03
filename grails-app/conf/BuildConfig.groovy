@@ -19,12 +19,13 @@ grails.project.dependency.resolution = {
 	}
 
 	plugins {
-//		build ":tomcat:7.0.42"
+		build ":tomcat:7.0.42"
 
 		compile ':spring-security-core:2.0-RC2'
 		compile ':mail:1.0.1'
 		compile ':jquery:1.10.2'
 		compile ':jquery-ui:1.8.24'
 		compile ':famfamfam:1.0.1'
+		compile ":release:3.0.1"
 	}
 }
